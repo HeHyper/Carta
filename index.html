@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #1a1a1a;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        .invitation-card {
+            background: #2d1b2d;
+            border: 3px solid #ff6b00;
+            border-radius: 15px;
+            padding: 2rem;
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 0 20px rgba(255, 107, 0, 0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        h1 {
+            color: #ff6b00;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px rgba(255, 107, 0, 0.5);
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 10px rgba(255, 107, 0, 0.5); }
+            50% { text-shadow: 0 0 20px rgba(255, 107, 0, 0.8), 0 0 30px rgba(255, 107, 0, 0.6); }
+        }
+
+        p {
+            color: #fff;
+            font-size: 1.2rem;
+            margin: 1rem 0;
+            line-height: 1.6;
+        }
+
+        .date {
+            color: #ff6b00;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 1.5rem 0;
+        }
+
+        .spider {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            animation: swing 3s ease-in-out infinite;
+        }
+
+        @keyframes swing {
+            0%, 100% { transform: translateX(-50%) rotate(15deg); }
+            50% { transform: translateX(-50%) rotate(-15deg); }
+        }
+
+        .bats {
+            position: absolute;
+            top: 20px;
+            font-size: 1.5rem;
+        }
+
+        .bat-left {
+            left: 20px;
+            animation: flyLeft 4s ease-in-out infinite;
+        }
+
+        .bat-right {
+            right: 20px;
+            animation: flyRight 4s ease-in-out infinite;
+        }
+
+        @keyframes flyLeft {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-20px, -20px); }
+        }
+
+        @keyframes flyRight {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(20px, -20px); }
+        }
+
+        .rsvp-button {
+            background: #ff6b00;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-top: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .rsvp-button:hover {
+            background: #ff8533;
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(255, 107, 0, 0.5);
+        }
+
+        .ghost {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0;
+        }
+
+        #ghost1 { animation: float-ghost 10s infinite 0s; }
+        #ghost2 { animation: float-ghost 10s infinite 3s; }
+        #ghost3 { animation: float-ghost 10s infinite 6s; }
+
+        @keyframes float-ghost {
+            0% { 
+                opacity: 0;
+                transform: translateY(100vh) translateX(-100px);
+            }
+            50% {
+                opacity: 0.7;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) translateX(100px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="ghost" id="ghost1">👻</div>
+    <div class="ghost" id="ghost2">👻</div>
+    <div class="ghost" id="ghost3">👻</div>
+    
+    <div class="invitation-card">
+        <div class="spider">🕷️</div>
+        <div class="bats bat-left">🦇</div>
+        <div class="bats bat-right">🦇</div>
+        
+        <h1>Halloween Party! 🎃</h1>
+        
+        <p>Join us for a spine-chilling night of fun and spooky surprises!</p>
+        
+        <div class="date">
+            October 31st, 2024<br>
+            8:00 PM
+        </div>
+        
+        <p>
+            Location: The Haunted Manor<br>
+            13 Spooky Street<br>
+            Ghostly Gardens
+        </p>
+        
+        <p>Don't forget to wear your scariest costume!</p>
+        
+        <button class="rsvp-button" onclick="confirmAttendance()">RSVP Now</button>
+    </div>
+
+    <script>
+        function confirmAttendance() {
+            alert('Thanks for confirming! 🎃 Get ready for a frightfully fun night!');
+        }
+
+        // Create random floating ghosts
+        function createRandomGhost() {
+            const ghost = document.createElement('div');
+            ghost.innerHTML = '👻';
+            ghost.className = 'ghost';
+            ghost.style.left = Math.random() * window.innerWidth + 'px';
+            ghost.style.animation = `float-ghost ${8 + Math.random() * 4}s infinite`;
+            document.body.appendChild(ghost);
+        }
+
+        // Create extra ghosts
+        for(let i = 0; i < 3; i++) {
+            setTimeout(createRandomGhost, i * 2000);
+        }
+    </script>
+</body>
+</html>
